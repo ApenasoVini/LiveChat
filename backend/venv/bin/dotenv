@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/home/vini/Área de Trabalho/LiveChat/backend/venv/bin/python3" "$0" "$@"
+'''exec' "/home/vini/Área de Trabalho/LiveChat/backend/venv/bin/python" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
