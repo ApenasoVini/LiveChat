@@ -28,6 +28,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CURRENT_URL = "http://127.0.0.1:8000"
+
 CORS_ALLOWED_ORIGINS = [
   'http://localhost:3000'
 ]
@@ -84,13 +86,13 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'livechat',  # Nome do banco de dados
-        'USER': 'root',      # Nome do usuário do banco de dados
-        'PASSWORD': '',      # Defina a senha do usuário root (deixe vazio se não houver)
-        'HOST': 'localhost', # Pode ser localhost ou o IP do servidor
-        'PORT': '3306',      # Porta do MySQL
+        'NAME': 'livechat', 
+        'USER': 'root',      
+        'PASSWORD': '',  
+        'HOST': 'localhost', 
+        'PORT': '3306',    
         'OPTIONS': {
-            'charset': 'utf8mb4'  # Charset recomendado para suportar caracteres Unicode
+            'charset': 'utf8mb4'  
         }
     }
 }
@@ -113,6 +115,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+AUTH_USER_MODEL = "accounts.User"
 
 
 # Internationalization
