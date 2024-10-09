@@ -4,7 +4,6 @@ from django.conf import settings
 
 from accounts.models import User
 
-
 class UserSerializer(serializers.ModelSerializer):
   class Meta:
     model = User
