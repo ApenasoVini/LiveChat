@@ -5,7 +5,7 @@ class Authentication:
   def signin(self, email: str, password: str) -> User | bool:
     user = User.objects.filter(email=email).first()
 
-    if user and check_password(password= user.password):
+    if user and check_password(password, user.password):
       return user
     
     return False

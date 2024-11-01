@@ -67,7 +67,7 @@ class UserView(APIView):
   def get(self, request):
     User.objects.filter(id=request.user.id).update(last_access=now())
 
-    user = UserSerializer(request.user.data).data
+    user = UserSerializer(request.user).data
 
     return Response({
       "user": user
