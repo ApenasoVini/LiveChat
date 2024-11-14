@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from attachments.models import FileAttachment, AudioAttachment
+from attachments.models import FileAttachments, AudioAttachments
 from attachments.utils.formatter import Formatter
 
 from django.conf import settings
@@ -8,7 +8,7 @@ from django.conf import settings
 
 class FileAttachmentSerializer(serializers.ModelSerializer):
   class Meta:
-    model = FileAttachment
+    model = FileAttachments
     fields = '__all__'
 
     def to_representation(self, instance):
@@ -21,7 +21,7 @@ class FileAttachmentSerializer(serializers.ModelSerializer):
 
 class AudioAttachmentSerializer(serializers.ModelSerializer):
   class Meta:
-    model = AudioAttachment
+    model = AudioAttachments
     fields = '__all__'
 
     def to_representation(self, instance):
