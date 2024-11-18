@@ -1,5 +1,5 @@
 from django.contrib import admin
-from attachments.models import FileAttachments, AudioAttachments
+from attachments.models import FileAttachment, AudioAttachment
 
-admin.site.register(FileAttachments)
-admin.site.register(AudioAttachments)
+admin.site.register(FileAttachment)
+admin.site.register(AudioAttachment)

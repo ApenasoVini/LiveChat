@@ -4,11 +4,10 @@ from django.db.models import Q
 from django.utils.timezone import now
 
 from chats.views.base import BaseView
-from chats.models import Chat
+from chats.models import Chat, ChatMessage
 from chats.serializers import ChatSerializer
 
-from core.socket import socketio
-
+from core.socket import sio
 
 class ChatsView(BaseView):
     def get(self, request):
@@ -46,7 +45,7 @@ class ChatsView(BaseView):
                 context={'user_id': request.user.id}
             ).data
 
-            socketio.emit('update_chat', {
+            sio.emit('update_chat', {
                 'query': {
                     'users': [request.user.id, user.id]
                 }
@@ -72,7 +71,7 @@ class ChatView(BaseView):
         )
 
         if deleted:
-            socketio.emit('update_chat', {
+            sio.emit('update_chat', {
                 'type': 'delete',
                 'query': {
                     'chat_id': chat_id,

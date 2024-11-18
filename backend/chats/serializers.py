@@ -4,7 +4,7 @@ from accounts.serializers import UserSerializer
 
 from chats.models import Chat, ChatMessage
 
-from attachments.models import FileAttachments, AudioAttachments
+from attachments.models import FileAttachment, AudioAttachment
 from attachments.serializers import FileAttachmentSerializer, AudioAttachmentSerializer
 
 
@@ -59,7 +59,7 @@ class ChatMessagesSerializer(serializers.ModelSerializer):
 
     def get_attachment(self, message):
         if message.attachment_code == 'FILE':
-            file_attachment = FileAttachments.objects.filter(
+            file_attachment = FileAttachment.objects.filter(
                 id = message.attachment_id
             ).first()
 
@@ -70,7 +70,7 @@ class ChatMessagesSerializer(serializers.ModelSerializer):
                 'file': FileAttachmentSerializer(file_attachment).data
             }
         if message.attachment_code == 'AUDIO':
-            audio_attachment = AudioAttachments.objects.filter(
+            audio_attachment = AudioAttachment.objects.filter(
                 id = message.attachment_id
             ).first()
 

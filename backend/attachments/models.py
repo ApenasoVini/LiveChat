@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class FileAttachments(models.Model):
+class FileAttachment(models.Model):
   name = models.CharField(max_length=90)
   extension = models.CharField(max_length=15)
   size = models.FloatField()
@@ -11,7 +11,7 @@ class FileAttachments(models.Model):
   class Meta:
     db_table = 'file_attachments'
 
-class AudioAttachments(models.Model):
+class AudioAttachment(models.Model):
   src = models.TextField()
 
   class Meta:
