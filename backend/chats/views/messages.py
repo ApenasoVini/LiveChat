@@ -50,9 +50,9 @@ class ChatMessagesView(BaseView):
         })
 
     def post(self, request, chat_id):
-        body = request.data.get('body'),
-        file = request.FILES.get('file'),
-        audio = request.FILES.get('audio'),
+        body = request.data.get('body')
+        file = request.FILES.get('file')
+        audio = request.FILES.get('audio')
 
         chat = self.chat_belongs_to_user(
             user_id=request.user.id,
