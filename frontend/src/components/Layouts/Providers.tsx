@@ -24,7 +24,7 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
     >
       {children}
 
-      <ProgressBar height="4px" color="#e10000" shallowRouting />
+      <ProgressBar height="4px" color="#3fc1c9" shallowRouting />
 
       <Toaster />
     </ThemeProvider>
