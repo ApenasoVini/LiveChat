@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { toast } from "sonner";
-import Logo from "@/assets/logo.svg";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Home, LogOut, Menu, Moon, Sun, User } from "lucide-react";
 import {
@@ -37,7 +36,12 @@ export const Header = () => {
       <nav className="flex items-center justify-between h-full max-w-7xl mx-auto">
         <div className="hidden min-[480px]:block">
           <Link href="/">
-            <Image src={Logo} alt="logo Livechat" width={170} priority />
+            <Image
+              src="@/assets/logo.svg"
+              alt="logo Livechat"
+              width={170}
+              priority
+            />
           </Link>
         </div>
 
