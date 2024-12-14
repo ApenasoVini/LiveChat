@@ -15,7 +15,7 @@ export type APIGetChats = {
 }
 
 export type APICreateChat = {
-    chats: Chat
+    chat: Chat
 }
 
 export type APIDeleteChat = {
