@@ -34,7 +34,7 @@ body {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --header-height: 4rem;
-    --app-height: calc(100vh - var(var(var(--header-height))));
+    --app-height: calc(100vh - var(--header-height));
   }
 
   .dark {
@@ -79,7 +79,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
- background: #75747462
+  background: #75747462;
 }
 
 ::-webkit-scrollbar-thumb {

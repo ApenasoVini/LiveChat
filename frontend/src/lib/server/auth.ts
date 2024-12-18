@@ -59,6 +59,6 @@ export const handleGetUser = async () => {
 };
 
 export const handleSignOut = async () => {
-  (await cookies()).delete(process.env.NEXT_PUBLIC_API_BASE_URL as string);
+  (await cookies()).delete(process.env.NEXT_PUBLIC_AUTH_KEY as string);
   redirect("/auth/signin");
 };
