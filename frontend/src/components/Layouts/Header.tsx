@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import Logo from "@/assets/logo.svg";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Home, LogOut, Menu, Moon, Sun, User } from "lucide-react";
@@ -37,9 +38,10 @@ export const Header = () => {
         <div className="hidden min-[480px]:block">
           <Link href="/">
             <Image
-              src="@/assets/logo.svg"
+              src={Logo}
               alt="logo Livechat"
               width={170}
+              height={50}
               priority
             />
           </Link>
@@ -69,7 +71,7 @@ export const Header = () => {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="icon">
-                <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                <Sun className="h-[1.2rem] text-slate-950 w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 <span className="sr-only">Alterar o tema</span>
               </Button>
