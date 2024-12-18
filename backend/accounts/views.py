@@ -109,7 +109,7 @@ class UserView(APIView):
 
           raise ValidationError(first_error)
       
-      if avatar and request.user_avatar != "/media/avatars/default-avatar.png":
+      if avatar and request.user.avatar != "/media/avatars/default-avatar.png":
         storage.delete(request.user.avatar.split('/')[-1])
 
       if password:

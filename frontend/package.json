@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emoji-mart/data": "^1.2.1",
+    "@emoji-mart/react": "^1.1.1",
     "@eslint/config-array": "^0.19.1",
     "@eslint/object-schema": "^2.1.5",
     "@hookform/resolvers": "^3.9.1",
@@ -22,6 +24,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.13",
+    "emoji-mart": "^5.6.0",
     "glob": "^9.3.5",
     "lru-cache": "^11.0.2",
     "lucide-react": "^0.468.0",
