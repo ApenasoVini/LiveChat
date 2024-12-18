@@ -3,6 +3,12 @@
 import { useTheme } from "next-themes";
 import { ChangeEvent, useRef, useState } from "react";
 import { toast } from "sonner";
+import Picker from "@emoji-mart/react";
+import data from "@emoji-mart/data";
+import { Laugh, Mic, Paperclip, SendHorizonal, Trash, X } from "lucide-react";
+import { Button } from "../ui/button";
+import { BounceLoader } from "react-spinners";
+import { Input } from "../ui/input";
 
 type Props = {
   onSendMessage: (data: {
@@ -16,12 +22,19 @@ export const Footer = ({ onSendMessage }: Props) => {
   const [emoijPicker, setEmojiPicker] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
   const [audioChunks, setAudioChunks] = useState<Blob[]>([]);
+  const [recordingTime, setRecordingTime] = useState(0);
   const [messageValue, setMessageValue] = useState("");
   const [messageAttachment, setMessageAttachment] = useState<File | null>(null);
 
   const theme = useTheme();
-
   const mediaRecorder = useRef<MediaRecorder | null>(null);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const formatTime = (time: number) => {
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  };
 
   const handleToggleEmojiPicker = () => setEmojiPicker(!emoijPicker);
 
@@ -29,7 +42,7 @@ export const Footer = ({ onSendMessage }: Props) => {
     setMessageValue(`${messageValue}${data.native}`);
   };
 
-  const handleUpdateAttachment = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleUploadAttachment = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) setMessageAttachment(file);
   };
@@ -61,6 +74,11 @@ export const Footer = ({ onSendMessage }: Props) => {
     if (!stream) return;
 
     setIsRecording(true);
+    setRecordingTime(0);
+
+    timerRef.current = setInterval(() => {
+      setRecordingTime((prev) => prev + 1);
+    }, 1000);
 
     const media = new MediaRecorder(stream, { mimeType: "audio/webm" });
 
@@ -71,6 +89,7 @@ export const Footer = ({ onSendMessage }: Props) => {
 
     mediaRecorder.current.ondataavailable = (event) => {
       if (typeof event.data === "undefined" || event.data.size === 0) return;
+      localAudioChunks.push(event.data);
     };
 
     setAudioChunks(localAudioChunks);
@@ -97,6 +116,8 @@ export const Footer = ({ onSendMessage }: Props) => {
 
     setIsRecording(false);
 
+    if (timerRef.current) clearInterval(timerRef.current);
+
     mediaRecorder.current.stop();
     mediaRecorder.current.stream.getTracks().forEach((track) => track.stop());
   };
@@ -107,4 +128,121 @@ export const Footer = ({ onSendMessage }: Props) => {
     setMessageAttachment(null);
     setMessageValue("");
   };
+
+  return (
+    <div>
+      <div
+        className={`fixed ml-2 ${
+          emoijPicker ? "opacity-100 bottom-16" : "-bottom-[440px] opacity-0"
+        } duration-300`}
+      >
+        <Picker
+          data={data}
+          theme={theme.theme}
+          onEmojiSelect={handleEmojiSelect}
+        />
+      </div>
+
+      {messageAttachment && (
+        <div className="flex items-center justify-between text-slate-600 dark:text-slate-400 bg-slate-100/80 dark:bg-slate-900/80 px-10 py-2 border-t">
+          <p className="text-xs">
+            Arquivo carregado: {messageAttachment.name}
+            {" - "}
+            {messageAttachment.type}
+          </p>
+
+          <X
+            onClick={() => setMessageAttachment(null)}
+            className="size-4 hover:text-primary cursor-pointer"
+          />
+        </div>
+      )}
+
+      <div className="flex items-center gap-4 border-t bg-slate-100/80 dark:bg-slate-900/80 px-8 py-2.5">
+        {isRecording ? (
+          <div className="flex items-center gap-5">
+            <Button
+              variant="ghost"
+              size="icon"
+              title="Parar gravação"
+              onClick={handleDeleteRecording}
+            >
+              <Trash className="size-5 text-slate-500 dark:text-slate-300" />
+            </Button>
+
+            <div className="text-sm text-slate-500 dark:text-slate-300 flex items-center gap-2">
+              <BounceLoader color="#F13434B3" size={17} />
+              <span>{formatTime(recordingTime)}</span>
+            </div>
+
+            <Button
+              className="ml-6"
+              size="sm"
+              title="Enviar mensagem de voz"
+              onClick={handleSendRecording}
+            >
+              <SendHorizonal className="text-slate-100" />
+            </Button>
+          </div>
+        ) : (
+          <>
+            <div className="flex items-center gap-2.5">
+              <Button
+                variant="ghost"
+                size="icon"
+                title="Emoji"
+                onClick={handleToggleEmojiPicker}
+              >
+                <Laugh className="text-slate-500 dark:text-slate-300" />
+              </Button>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                title="Anexo"
+                onClick={() => document.getElementById("attachment")?.click()}
+              >
+                <Paperclip className="text-slate-500 dark:text-slate-300" />
+              </Button>
+
+              <Input
+                id="attachment"
+                type="file"
+                className="hidden"
+                onChange={handleUploadAttachment}
+              />
+            </div>
+
+            <div className="flex-1">
+              <Input
+                value={messageValue}
+                onChange={(e) => setMessageValue(e.target.value)}
+                placeholder="Escreva uma mensagem..."
+              />
+            </div>
+
+            <div>
+              {!messageValue && !messageAttachment ? (
+                <Button
+                  size="icon"
+                  title="Gravar mensagem de voz"
+                  onClick={handleStartRecording}
+                >
+                  <Mic className="text-slate-100" />
+                </Button>
+              ) : (
+                <Button
+                  size="icon"
+                  title="Enviar mensagem"
+                  onClick={handleSendMessage}
+                >
+                  <SendHorizonal className="text-slate-100" />
+                </Button>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
 };
