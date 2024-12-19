@@ -6,9 +6,9 @@ import { toast } from "sonner";
 import Picker from "@emoji-mart/react";
 import data from "@emoji-mart/data";
 import { Laugh, Mic, Paperclip, SendHorizonal, Trash, X } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { BounceLoader } from "react-spinners";
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 
 type Props = {
   onSendMessage: (data: {

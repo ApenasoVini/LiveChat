@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -20,7 +20,7 @@ import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const AccountPage = () => {
   const { user, setUser } = useAuthStore();
