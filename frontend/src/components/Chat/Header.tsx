@@ -52,7 +52,10 @@ export const Header = () => {
           <EllipsisVertical className="size-5 text-slate-500 dark:text-slate-400 hover:text-primary cursor-pointer" />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
-          <DropdownMenuItem className="cursor-pointer" onClick={handleDeleteChat}>
+          <DropdownMenuItem
+            className="cursor-pointer"
+            onClick={handleDeleteChat}
+          >
             <Trash2 className="mr-2 size-4" />
             <span>Excluir conversa</span>
           </DropdownMenuItem>
