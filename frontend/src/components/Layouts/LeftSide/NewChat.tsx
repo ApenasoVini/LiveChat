@@ -1,6 +1,6 @@
 import { NewChatData, newChatSchema } from "@/lib/schemas/chatSchema";
 import { useChatStore } from "@/stores/chatStore";
-import { Form, useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createChat } from "@/lib/requests";
 import { toast } from "sonner";
@@ -50,7 +50,7 @@ export const NewChat = () => {
   return (
     <Drawer open={showNewChat} onOpenChange={setShowNewChat}>
       <DrawerContent>
-        <Form {...form}>
+        <FormProvider {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="mx-auto w-full max-w-lg"
@@ -83,7 +83,7 @@ export const NewChat = () => {
               </DrawerClose>
             </DrawerFooter>
           </form>
-        </Form>
+        </FormProvider>
       </DrawerContent>
     </Drawer>
   );
