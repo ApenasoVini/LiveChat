@@ -88,6 +88,7 @@ export const SignInPage = () => {
                           <FormLabel>Email</FormLabel>
                           <FormControl>
                             <Input
+                              type="email"
                               placeholder="Ex: matias1992@gmail.com"
                               {...field}
                             />
@@ -104,7 +105,11 @@ export const SignInPage = () => {
                         <FormItem>
                           <FormLabel>Senha</FormLabel>
                           <FormControl>
-                            <Input placeholder="Ex: @Moc1992" {...field} />
+                            <Input
+                              type="password"
+                              placeholder="Ex: @Moc1992"
+                              {...field}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>

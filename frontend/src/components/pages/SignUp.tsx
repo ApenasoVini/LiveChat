@@ -89,6 +89,7 @@ export const SignUpPage = () => {
                           <FormLabel>Nome</FormLabel>
                           <FormControl>
                             <Input
+                              type="text"
                               placeholder="Ex: Matias Oliveira Casares"
                               {...field}
                             />
@@ -106,6 +107,7 @@ export const SignUpPage = () => {
                           <FormLabel>Email</FormLabel>
                           <FormControl>
                             <Input
+                              type="email"
                               placeholder="Ex: matias1992@gmail.com"
                               {...field}
                             />
@@ -123,6 +125,7 @@ export const SignUpPage = () => {
                           <FormLabel>Senha</FormLabel>
                           <FormControl>
                             <Input
+                              type="password"
                               placeholder="Ex: @Moc1992"
                               {...field}
                             />
