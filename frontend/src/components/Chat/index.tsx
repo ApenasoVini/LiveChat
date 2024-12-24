@@ -12,7 +12,7 @@ import { socket } from "@/components/Layouts/Providers";
 import dayjs from "dayjs";
 import { Header } from "@/components/Chat/Header";
 import { ScaleLoader } from "react-spinners";
-import { MessageItem } from "./MessageItem";
+import { MessageItem } from "@/components/Chat/MessageItem";
 import { Footer } from "@/components/Chat/Footer";
 
 export const Chat = () => {

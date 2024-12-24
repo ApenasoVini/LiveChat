@@ -1,5 +1,5 @@
-import { HomePage } from "@/components/pages/Home";
+import { HomePage } from "@/components/Pages/Home";
 
-const Home = () => <HomePage />
+const Home = () => <HomePage />;
 
-export default Home
+export default Home;

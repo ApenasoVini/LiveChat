@@ -1,4 +1,4 @@
-import { AccountPage } from "@/components/pages/Account";
+import { AccountPage } from "@/components/Pages/Account";
 import { Metadata } from "next";
 
 export const metada: Metadata = {
