@@ -49,16 +49,11 @@ const FileMessage = ({ data }: { data: FileAttachment }) => {
   );
 };
 
-const AudioMessage = ({ data }: { data: AudioAttachment }) => {
-  console.log(data.src);
-  console.log(data);
-
-  return (
-    <audio controls>
-      <source src={env + data.src} type="audio/mpeg" />
-    </audio>
-  );
-};
+const AudioMessage = ({ data }: { data: AudioAttachment }) => (
+  <audio controls>
+    <source src={env + data.src} type="audio/mpeg" />
+  </audio>
+);
 
 export const MessageItem = ({ data, onDelete }: Props) => {
   const { user } = useAuthStore();
